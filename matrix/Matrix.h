@@ -20,26 +20,38 @@ namespace matrix
 		static void PopulateRand(Matrix& a);
 		static void PopulateXavier(Matrix& a, int fanIn, int fanOut);
 
-		Matrix operator+(const Matrix& other);
-		Matrix operator+(double val) const;
-		friend Matrix operator+(double val, const Matrix& matrix);
-		Matrix operator-(const Matrix& other);
-		Matrix operator-(double val) const;
-		friend Matrix operator-(double val, const Matrix& matrix);
-		Matrix operator*(const Matrix& other);
-		Matrix operator*(double other);
-		friend Matrix operator*(double val, const Matrix& other);
+		Matrix operator+(const Matrix& other) const;
+		Matrix operator+(const float val) const;
+		friend Matrix operator+(const float val, const Matrix& matrix);
+		
+		Matrix& operator+=(const Matrix& other);
+		Matrix& operator+=(const float val);
+		
+		Matrix operator-(const Matrix& other) const;
+		Matrix operator-(const float val) const;
+		friend Matrix operator-(const float val, const Matrix& matrix);
+		
+		Matrix& operator-=(const Matrix& other);
+		Matrix& operator-=(const float val);
+
+		Matrix operator*(const Matrix& other) const;
+		Matrix operator*(const float other) const;
+		friend Matrix operator*(const float val, const Matrix& other);
+
+		Matrix& operator*=(const Matrix& other);
+		Matrix& operator*=(const float other);
+		
 		Matrix operator%(const Matrix& other);
-		Matrix& operator=(const double* other);
+		Matrix& operator=(const float* other);
 		Matrix& operator=(const Matrix& other);
 		Matrix& operator=(Matrix&& other) noexcept;
-		const double* operator[] (int index) const;
-		double* operator[] (int index);
+		const float* operator[] (int index) const;
+		float* operator[] (int index);
 
 		int Rows() const;
 		int Cols() const;
 		std::pair<int, int> Dimensions() const;
-		double* GetMatrix() const;
+		float* GetMatrix() const;
 
 		template <typename T>
 		static std::vector<T> ToArray(const Matrix v);
@@ -51,6 +63,6 @@ namespace matrix
 
 	private:
 		int dimensions[2];
-		double* matrix;
+		float* matrix;
 	};
 }
