@@ -7,7 +7,7 @@ if(MATRIX_USE_CUDA)
     list(APPEND MATRIX_SOURCES ${MATRIX_CUDA_SOURCES})
 endif()
 
-add_library(matrix STATIC ${MATRIX_SOURCES})
+add_library(matrix STATIC ${MATRIX_SOURCES} "Cuda.h")
 add_library(matrix::matrix ALIAS matrix)
 
 target_include_directories(matrix PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
